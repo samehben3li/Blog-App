@@ -1,19 +1,49 @@
+import axios from "axios"
+import { useRef,useState } from "react"
+import { Link,useNavigate } from "react-router-dom"
 import "./register.css"
 
 const Register = () => {
+
+    const username = useRef()
+    const email = useRef()
+    const password = useRef()
+    const navigate = useNavigate()
+    const [error, setError] = useState(false)
+
+    const handleRegister = async(e)=>{
+        e.preventDefault()
+        setError(false)
+        try {
+            const res = await axios.post("/auth/register",{
+                username: username.current.value,
+                password: password.current.value,
+                email: email.current.value
+            })
+            res.data && navigate("/login")
+        } catch (err) {
+            setError(true)
+        }
+    }
+
   return (
       <div className="login">
           <span className="loginTitle">Register</span>
-          <form className="loginForm">
+          <form className="loginForm" onSubmit={handleRegister}>
               <label>Username : </label>
-              <input type="text" className="loginInput" placeholder="Enter Your Username ..." />
+              <input ref={username} type="text" className="loginInput" placeholder="Enter Your Username ..." />
               <label>Email : </label>
-              <input type="email" className="loginInput" placeholder="Enter Your Email ..." />
+              <input ref={email} type="email" className="loginInput" placeholder="Enter Your Email ..." />
               <label>Password :</label>
-              <input type="password" className="loginInput" placeholder="Enter Your Password ..." />
-              <button className="loginButton">Register</button>
+              <input ref={password} type="password" className="loginInput" placeholder="Enter Your Password ..." />
+              <button type="submit" className="loginButton" >Register</button>
           </form>
-          <button className="loginRegisterButton">Login</button>
+          <Link to="/login" className="link">
+            <button className="loginRegisterButton">Login</button>
+          </Link>
+          { error && 
+          <span className="error">something went wrong !</span>
+          }
       </div>
   )
 }

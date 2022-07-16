@@ -1,25 +1,28 @@
+import { Link } from "react-router-dom"
 import "./post.css"
 
-export default function Post() {
+export default function Post({post}) {
   return (
     <div className="post">
-        <img src="/assets/img/9.jpeg" alt="" className="postImg" />
+        { post.photo && 
+          <img src="/assets/img/9.jpeg" alt="" className="postImg" />
+        }
         <div className="postInfo">
           <div className="postCats">
-            <div className="postCat">Music</div>
-            <div className="postCat">Life</div>
+            { post.categories.map((cat,i)=>(
+              <div className="postCat" key={i}>{cat.name}</div>
+            )) }
           </div>
-          <span className="postTitle">
-            Post title test Blog app
-          </span>
+          <Link to={`/post/${post._id}`} className="link">
+            <span className="postTitle">
+              {post.title}
+            </span>
+          </Link>
           <hr />
-          <span className="postDate">1 hour ago</span>
+          <span className="postDate">{ new Date(post.createdAt).toDateString() }</span>
         </div>
         <p className="postDesc">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo incidunt culpa enim molestias? Quaerat eaque cum tenetur dolores, architecto perferendis esse, nemo ipsum voluptatibus totam iste quidem, deleniti quasi in.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo incidunt culpa enim molestias? Quaerat eaque cum tenetur dolores, architecto perferendis esse, nemo ipsum voluptatibus totam iste quidem, deleniti quasi in.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo incidunt culpa enim molestias? Quaerat eaque cum tenetur dolores, architecto perferendis esse, nemo ipsum voluptatibus totam iste quidem, deleniti quasi in.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo incidunt culpa enim molestias? Quaerat eaque cum tenetur dolores, architecto perferendis esse, nemo ipsum voluptatibus totam iste quidem, deleniti quasi in.
+          {post.desc}
         </p>
     </div>
   )
