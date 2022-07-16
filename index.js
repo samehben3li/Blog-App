@@ -40,6 +40,6 @@ app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
 app.use("/api/categories", categoryRoute)
 
-app.listen("5000", () => {
-    console.log("backend server is running in  port 5000")
+app.listen("8800", () => {
+    console.log("backend server is running in  port 8800")
 })
