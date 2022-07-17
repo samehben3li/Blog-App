@@ -3,7 +3,7 @@ const app = express()
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
 const multer = require("multer")
-
+const path = require("path")
 const authRoute = require("./routes/auth")
 const userRoute = require("./routes/users")
 const postRoute = require("./routes/posts")
@@ -11,6 +11,8 @@ const categoryRoute = require("./routes/categories")
 
 dotenv.config()
 app.use(express.json())
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

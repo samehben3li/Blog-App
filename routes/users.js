@@ -26,6 +26,9 @@ router.delete("/:id", async(req, res) => {
     if (req.body.userId === req.params.id) {
         try {
             const user = await User.findById(req.params.id)
+            if (!user) {
+                return res.status(404).json("user not found")
+            }
             try {
                 await Post.deleteMany({ username: user.username })
             } catch (err) {
@@ -38,7 +41,7 @@ router.delete("/:id", async(req, res) => {
                 res.status(500).json(err)
             }
         } catch (err) {
-            res.status(404).json("uer not found")
+            res.status(404).json("user not found")
         }
     } else {
         res.status(401).json("you can update only your account")
