@@ -1,25 +1,67 @@
+import { useState, useRef, useContext } from "react"
+import axios from "axios"
+import {useNavigate} from 'react-router-dom'
+import { Context } from "../../context/Context"
 import "./write.css"
 
 export default function Write() {
+
+    const title = useRef()
+    const desc = useRef()
+    const [file,setFile] = useState(null)
+    const { user } = useContext(Context)
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const newPost = {
+            title: title.current.value,
+            desc: desc.current.value,
+            username: user.username
+        }
+        if (file){
+            const data = new FormData()
+            const filename = Date.now() + file.name
+            data.append("name",filename)
+            data.append("file",file)
+            newPost.photo = filename
+            try {
+                await axios.post("/upload",data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        try {
+            const res = await axios.post("/posts",newPost)
+            navigate(`/post/${res.data._id}`)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
   return (
     <div className="write">
-        <img src="/assets/img/9.jpeg" alt="" className="writeImg" />
-        <form className="writeForm">
+        { file &&
+        <img src={URL.createObjectURL(file)} alt="" className="writeImg" /> 
+        }
+        <form className="writeForm" onSubmit={handleSubmit}>
             <div className="writeFormGroup">
                 <label htmlFor="fileInput">
                     <i className="writeIcon fas fa-plus"></i>
                 </label>
-                <input type="file" id="fileInput" style={{ display:"none" }} />
-                <input type="text" placeholder="Title" className="writeInput" autoFocus={true} />
+                <input type="file" id="fileInput" style={{ display:"none" }} onChange={(e)=>setFile(e.target.files[0])} />
+                <input type="text" ref={title} placeholder="Title" className="writeInput" autoFocus={true} />
             </div>
             <div className="writeFormGroup">
                 <textarea 
                     placeholder="Tell your story .."
                     type="text"
-                    className="writeInput writeText">
+                    className="writeInput writeText"
+                    ref={desc}
+                    >
                 </textarea>
             </div>
-            <button className="writeSubmit">publish</button>
+            <button className="writeSubmit" type="submit">publish</button>
         </form>
     </div>
   )
