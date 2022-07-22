@@ -45,6 +45,7 @@ app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
 app.use("/api/categories", categoryRoute)
 
-app.listen(8800, () => {
-    console.log("backend server is running in  port 8800")
+const PORT=process.env.PORT || 80
+app.listen(PORT, () => {
+    console.log(`backend server is running in  port ${PORT}`)
 })
