@@ -36,6 +36,9 @@ const upload = multer({ storage: storage })
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("file has been upload ...")
 })
+app.get("/test",(req,res)=>{
+    res.json("test success")
+})
 
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
