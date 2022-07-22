@@ -36,7 +36,7 @@ const upload = multer({ storage: storage })
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("file has been upload ...")
 })
-app.get("/test",(req,res)=>{
+app.get("/test", (req, res) => {
     res.json("test success")
 })
 
@@ -45,6 +45,6 @@ app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
 app.use("/api/categories", categoryRoute)
 
-app.listen("8800", () => {
+app.listen(8800, () => {
     console.log("backend server is running in  port 8800")
 })
