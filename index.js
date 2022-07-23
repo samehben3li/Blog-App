@@ -14,7 +14,7 @@ const categoryRoute = require("./routes/categories")
 dotenv.config()
 app.use(express.json())
 app.use(cors({
-    origin: 'http://192.168.1.129:3000/'
+    origin: 'https://theknowerblog.netlify.app/'
 }));
 
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
