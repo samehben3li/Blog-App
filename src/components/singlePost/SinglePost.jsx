@@ -15,7 +15,7 @@ export default function SinglePost() {
   const [updateMode, setUpdateMode] = useState(false)
   const [post, setPost] = useState({})
   const postId = useLocation().pathname.split("/")[2]
-  const PF = "http://localhost:8800/uploads/"
+  const PF = "https://theknowerblog.herokuapp.com/uploads/"
 
   useEffect(() => {
     const getPost = async ()=>{

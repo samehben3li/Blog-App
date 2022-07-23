@@ -13,7 +13,7 @@ export default function Settings() {
   const [password, setPassword] = useState("")
   const [file,setFile] = useState(null)
   const [succes, setSucces] = useState(false)
-  const PF = "http://localhost:8800/uploads/"
+  const PF = "https://theknowerblog.herokuapp.com/uploads/"
 
   const handleDelete = async () =>{
     try {

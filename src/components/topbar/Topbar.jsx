@@ -7,7 +7,7 @@ import { Logout } from "../../context/Actions"
 export default function Topbar() {
 
     const { user, dispatch } = useContext(Context)
-    const PF = "http://localhost:8800/uploads/"
+    const PF = "https://theknowerblog.herokuapp.com/uploads/"
 
     const handleLogout = () => {
         dispatch(Logout())

@@ -3,7 +3,7 @@ import "./post.css"
 
 export default function Post({post}) {
 
-  const PF = "http://localhost:8800/uploads/"
+  const PF = "https://theknowerblog.herokuapp.com/uploads/"
 
   return (
     <div className="post">
