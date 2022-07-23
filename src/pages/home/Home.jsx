@@ -13,7 +13,8 @@ export default function Home() {
 
   useEffect(()=>{
     const getPosts = async()=>{
-      const res = await axios.get("/posts"+search)
+      const res = await axios.get("https://theknowerblog.herokuapp.com/api/posts"+search)
+      console.log(res)
       setPosts(res.data)
     }
     getPosts()
