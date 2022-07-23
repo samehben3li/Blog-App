@@ -4,7 +4,6 @@ const dotenv = require("dotenv")
 const mongoose = require("mongoose")
 const multer = require("multer")
 const path = require("path")
-const cors = require("cors")
 
 const authRoute = require("./routes/auth")
 const userRoute = require("./routes/users")
@@ -13,9 +12,6 @@ const categoryRoute = require("./routes/categories")
 
 dotenv.config()
 app.use(express.json())
-app.use(cors({
-    origin: 'https://theknowerblog.netlify.app/'
-}));
 
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
 
