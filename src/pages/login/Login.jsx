@@ -9,13 +9,13 @@ const Login = () => {
 
   const username = useRef()
   const password = useRef()
-  const { isFetching,dispatch } = useContext(Context)
+  const { isFetching,dispatch,error } = useContext(Context)
 
   const handleSubmit =async(e) => {
     e.preventDefault()
     dispatch(LoginStart())
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post("https://theknowerblog.herokuapp.com/api/auth/login", {
         username: username.current.value,
         password: password.current.value
       })
@@ -38,6 +38,9 @@ const Login = () => {
           <Link to="/register" className="link">
             <button className="loginRegisterButton">Register</button>
           </Link>
+          { error && 
+          <span className="error">something went wrong !</span>
+          }
       </div>
   )
 }

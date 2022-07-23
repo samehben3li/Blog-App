@@ -19,7 +19,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async ()=>{
-      const res = await axios.get("/posts/"+postId)
+      const res = await axios.get("https://theknowerblog.herokuapp.com/api/posts/"+postId)
       setPost(res.data)
       setTitle(res.data.title)
       setDesc(res.data.desc)
@@ -29,7 +29,7 @@ export default function SinglePost() {
 
   const handleDelete = async (e) => {
     try {
-      await axios.delete("/posts/"+post._id,{data: {username: user.username}})
+      await axios.delete("https://theknowerblog.herokuapp.com/api/posts/"+post._id,{data: {username: user.username}})
       navigate("/")
     } catch (err) {
       console.log(err)
@@ -49,13 +49,13 @@ export default function SinglePost() {
       data.append("file",file)
       updatedPost.photo = filename
       try {
-        await axios.post("/upload",data)
+        await axios.post("https://theknowerblog.herokuapp.com/api/upload",data)
       } catch (err) {
         console.log(err)
       }
     }
     try {
-      await axios.put("/posts/"+post._id,updatedPost)
+      await axios.put("https://theknowerblog.herokuapp.com/api/posts/"+post._id,updatedPost)
       setUpdateMode(false)
     } catch (err) {
       console.log(err)

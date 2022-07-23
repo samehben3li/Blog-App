@@ -17,7 +17,7 @@ export default function Settings() {
 
   const handleDelete = async () =>{
     try {
-      await axios.delete("/users/"+user._id,{ data: {userId: user._id} })
+      await axios.delete("https://theknowerblog.herokuapp.com/api/users/"+user._id,{ data: {userId: user._id} })
       dispatch(DeleteUserSuccess())
     } catch (err) {
       console.log(err)
@@ -48,13 +48,13 @@ export default function Settings() {
       data.append("file",file)
       updatedUser.profilePic = filename
       try {
-        await axios.post("/upload",data)
+        await axios.post("https://theknowerblog.herokuapp.com/api/upload",data)
       } catch (err) {
         console.log(err)
       }
     }
     try {
-      const res = await axios.put("/users/"+user._id,updatedUser)
+      const res = await axios.put("https://theknowerblog.herokuapp.com/api/users/"+user._id,updatedUser)
       setSucces(true)
       dispatch(UpdateUserSuccess(res.data))
     } catch (err) {

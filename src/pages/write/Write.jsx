@@ -26,13 +26,13 @@ export default function Write() {
             data.append("file",file)
             newPost.photo = filename
             try {
-                await axios.post("/upload",data)
+                await axios.post("https://theknowerblog.herokuapp.com/api/upload",data)
             } catch (err) {
                 console.log(err)
             }
         }
         try {
-            const res = await axios.post("/posts",newPost)
+            const res = await axios.post("https://theknowerblog.herokuapp.com/api/posts",newPost)
             navigate(`/post/${res.data._id}`)
         } catch (err) {
             console.log(err)
