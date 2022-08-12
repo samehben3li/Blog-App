@@ -42,10 +42,9 @@ export default function Sidebar() {
       <div className="sidebarItem">
         <div className="sidebarTitle">FOLLOW US</div>
         <div className="sidebarIcon">
-          <i className="sidebarIcon fab fa-facebook-square"></i>
-          <i className="sidebarIcon fab fa-twitter-square"></i>
-          <i className="sidebarIcon fab fa-pinterest-square"></i>
-          <i className="sidebarIcon fab fa-instagram-square"></i>
+            <a className="link" href="https://www.linkedin.com/in/sameh-benali-9381191a7/" rel="noreferrer" target="__blank"><i className="sidebarIcon fab fa-linkedin"></i></a>
+            <a className="link" href="https://github.com/samehben3li" rel="noreferrer" target="__blank"><i className="sidebarIcon fab fa-github-square"></i></a>
+            <a className="link" href="https://samehben3li.netlify.app/" rel="noreferrer" target="__blank"><i className="sidebarIcon fas fa-globe"></i></a>
         </div>
       </div>
     </div>

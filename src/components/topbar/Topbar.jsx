@@ -16,10 +16,9 @@ export default function Topbar() {
   return (
     <div className="top">
         <div className="topLeft">
-            <i className="topIcon fab fa-facebook-square"></i>
-            <i className="topIcon fab fa-twitter-square"></i>
-            <i className="topIcon fab fa-pinterest-square"></i>
-            <i className="topIcon fab fa-instagram-square"></i>
+            <a className="link" href="https://www.linkedin.com/in/sameh-benali-9381191a7/" rel="noreferrer" target="__blank"><i className="topIcon fab fa-linkedin"></i></a>
+            <a className="link" href="https://github.com/samehben3li" rel="noreferrer" target="__blank"><i className="topIcon fab fa-github-square"></i></a>
+            <a className="link" href="https://samehben3li.netlify.app/" rel="noreferrer" target="__blank"><i className="topIcon fas fa-globe"></i></a>
         </div>
         <div className="topCenter">
             <ul className="topList">
